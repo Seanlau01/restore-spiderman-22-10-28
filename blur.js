@@ -53,7 +53,11 @@ function showClippedImage(){
     ctx.save()
     ctx.beginPath()
     clipCircle()
-    ctx.drawImage(image,ML,MT,cs_W,cs_H,0,0,cs_W,cs_H)//向右去找坐标
+    ctx.drawImage(image,
+        Math.max(0,ML),Math.max(0,MT),
+        Math.min(image.width,cs_W),Math.min(image.height,cs_H),
+        ML<0?-ML:0,MT<0?-MT:0,
+        Math.min(image.width,cs_W),Math.min(image.height,cs_H))//向右去找坐标
     ctx.closePath()
     ctx.restore()
 }
